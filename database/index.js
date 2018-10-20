@@ -69,3 +69,10 @@ let userSchema = new Schema({
     {type: Schema.Types.ObjectId, ref: 'Photo'}
   ]
 });
+
+let photoSchema = new Schema({
+  review: {type: Schema.Types.ObjectId, ref: 'Review'},
+  user: {type: Schema.Types.ObjectId, ref: 'User'},
+  caption: String,
+  imageUrl: String
+});
