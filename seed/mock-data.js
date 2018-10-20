@@ -27,12 +27,12 @@ for (var i = 0; i < 1; i++) {
   );
 };
 
-// Create 10 reviews
+// Create 100 reviews
 const reviews = [];
 const typeOfVisitChoices = ['couples', 'family', 'friends', 'business', 'solo'];
 const choices = ['yes', 'no', 'not sure'];
 
-for (var i = 0; i < 10; i++) {
+for (var i = 0; i < 100; i++) {
   reviews.push(
     {
       attraction: null,
@@ -57,10 +57,10 @@ for (var i = 0; i < 10; i++) {
   );
 };
 
-// Create 5 users
+// Create 20 users
 const users = [];
 
-for (var i = 0; i < 5; i++) {
+for (var i = 0; i < 20; i++) {
   users.push(
     {
       userName: faker.name.findName(),
@@ -72,10 +72,10 @@ for (var i = 0; i < 5; i++) {
   );
 };
 
-// Create 10 photos
+// Create 200 photos
 const photos = [];
 
-for (var i = 0; i < 10; i++) {
+for (var i = 0; i < 200; i++) {
   photos.push(
     {
       review: null,
