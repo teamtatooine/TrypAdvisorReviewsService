@@ -1,5 +1,21 @@
 const db = require('./index.js');
 
+// Functions to get records
+  const getAttraction = (attractionId, callback) => {
+    db.Attraction.find().exec(callback);
+  };
+
+  const getReviews = async (filters, callback) => {
+    const parameters = [{
+      $addFields: { "month": { $month: '$visitDate' } }
+    }, {
+      $match: filters
+    }, {
+      $sort : { reviewDate: -1 }
+    }];
+    db.Review.aggregate(parameters, callback);
+  };
+
 // Functions to add records
   const addAttraction = (attractionData, callback) => {
     db.Attraction.create(attractionData, callback);
@@ -36,6 +52,8 @@ const db = require('./index.js');
   };
 
 module.exports = {
+  getAttraction: getAttraction,
+  getReviews: getReviews,
   addAttraction: addAttraction,
   addReview: addReview,
   addUser: addUser,
