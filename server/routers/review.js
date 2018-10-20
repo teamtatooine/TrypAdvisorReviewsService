@@ -21,12 +21,38 @@ router.route('/:id')
       filters.userRating = { $in: ratings };
     };
 
+    // Check for Traveler Type filters
+    const visitTypes = [];
+    req.body.families === 'true' ? visitTypes.push('family') : null;
+    req.body.couples === 'true' ? visitTypes.push('couples') : null;
+    req.body.solo === 'true' ? visitTypes.push('solo') : null;
+    req.body.business === 'true' ? visitTypes.push('business') : null;
+    req.body.friends === 'true' ? visitTypes.push('friends') : null;
+    if (visitTypes.length !== 0) {
+      filters.typeOfVisit = { $in: visitTypes };
+    };
+
+    // Check for Time of Year filters
+    const timing = [];
+    req.body.quarter1 === 'true' ? timing.push(3, 4, 5) : null;
+    req.body.quarter2 === 'true' ? timing.push(6, 7, 8) : null;
+    req.body.quarter3 === 'true' ? timing.push(9, 10, 11) : null;
+    req.body.quarter4 === 'true' ? timing.push(12, 1, 2) : null;
+    if (timing.length !== 0) {
+      filters.month = { $in: timing };
+    };
+
+    // Check for Keyword Search filters
+    keywords = new RegExp(req.body.search, 'i');
+    filters.description = keywords;
+
     // Get Reviews from db based on filters
     db.getReviews(filters, (err, result) => {
       if (err) {
         console.log('Error', err);
       } else {
         console.log('Reviews returned', result);
+        console.log('Review Count:', result.length);
         res.send(result);
       };
     })
