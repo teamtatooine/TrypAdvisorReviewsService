@@ -76,3 +76,9 @@ let photoSchema = new Schema({
   caption: String,
   imageUrl: String
 });
+
+// Build mongoose models
+let Attraction = mongoose.model('Attraction', attractionSchema);
+let Review = mongoose.model('Review', reviewSchema);
+let User = mongoose.model('User', userSchema);
+let Photo = mongoose.model('Photo', photoSchema);
