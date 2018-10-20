@@ -51,6 +51,23 @@ const db = require('./index.js');
     db.Photo.findByIdAndUpdate(photoId, parameters, callback);
   };
 
+// Functions to delete records
+  const deleteAttraction = (attractionId, callback) => {
+    db.Attraction.deleteOne({ _id: attractionId }, callback);
+  };
+
+  const deleteReview = (reviewId, callback) => {
+    db.Review.deleteOne({ _id: reviewId }, callback);
+  };
+
+  const deleteUser = (userId, callback) => {
+    db.User.deleteOne({ _id: userId }, callback);
+  };
+
+  const deletePhoto = (photoId, callback) => {
+    db.Photo.deleteOne({ _id: photoId }, callback);
+  };
+
 module.exports = {
   getAttraction: getAttraction,
   getReviews: getReviews,
@@ -61,5 +78,9 @@ module.exports = {
   updateAttraction: updateAttraction,
   updateReview: updateReview,
   updateUser: updateUser,
-  updatePhoto: updatePhoto
+  updatePhoto: updatePhoto,
+  deleteAttraction: deleteAttraction,
+  deleteReview: deleteReview,
+  deleteUser: deleteUser,
+  deletePhoto: deletePhoto
 };
