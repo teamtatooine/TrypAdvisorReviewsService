@@ -92,7 +92,18 @@ router.route('/:id/add')
     });
   });
 
+// Delete request to delete Review
 router.route('/:id/delete')
-  .delete((req, res) => {});
+  .delete((req, res) => {
+    const reviewId = mongoose.Types.ObjectId(req.params.id),
+    db.deleteReview(reviewId, (err, result) => {
+      if (err) {
+        console.log('Error', err);
+      } else {
+        console.log('Review deleted database', result);
+        res.send(result);
+      };
+    })
+  });
 
 module.exports = router;
