@@ -34,3 +34,15 @@ let attractionSchema = new Schema({
     {type: Schema.Types.ObjectId, ref: 'Review'}
   ]
 });
+
+let userSchema = new Schema({
+  userName: String,
+  profilePicture: String,
+  memberSince: Date,
+  reviews: [
+    {type: Schema.Types.ObjectId, ref: 'Review'}
+  ],
+  photos: [
+    {type: Schema.Types.ObjectId, ref: 'Photo'}
+  ]
+});
