@@ -16,6 +16,41 @@ const logAllAndPopulate = () => {
   db.Photo.find().populate('review user').exec((err, data) => { console.log('PHOTOS', data) });
 };
 
+// Delete all collection links
+const deleteAllLinks = async () => {
+
+  const attractions = await db.Attraction.find();
+  for (attraction of attractions) {
+    attraction.reviews = [];
+    attraction.photos = [];
+    await attraction.save();
+  };
+
+  const reviews = await db.Review.find();
+  for (review of reviews) {
+    review.attraction = null;
+    review.user = null;
+    review.photos = [];
+    await review.save();
+  };
+
+  const users = await db.User.find();
+  for (user of users) {
+    user.reviews = [];
+    user.photos = [];
+    await user.save();
+  };
+
+  const photos = await db.Photo.find();
+  for (photo of photos) {
+    photo.review = null;
+    photo.user = null;
+    await photo.save();
+  };
+
+  logAll();
+};
+
 // Delete all collections
 const deleteAll = () => {
   db.Attraction.collection.deleteMany({});
@@ -27,5 +62,6 @@ const deleteAll = () => {
 module.exports = {
   logAll: logAll,
   logAllAndPopulate: logAllAndPopulate,
+  deleteAllLinks: deleteAllLinks,
   deleteAll: deleteAll
 };
