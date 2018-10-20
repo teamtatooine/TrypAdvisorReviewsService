@@ -60,7 +60,37 @@ router.route('/:id')
 
 // Post request to add new Review
 router.route('/:id/add')
-  .post((req, res) => {});
+  .post((req, res) => {
+    const reviewData = {
+      attraction: mongoose.Types.ObjectId(req.params.id),
+      user: mongoose.Types.ObjectId('5bcaf388ae7cba700074f880'),
+      userRating: 5,
+      title: 'title TEST',
+      description: 'description TEST',
+      upVote: 100000,
+      typeOfVisit: 'friends',
+      visitDate: new Date(),
+      recommendedLengthOfVisit: '9 TEST',
+      skipLine: 'TEST',
+      headCover: 'TEST',
+      modestDress: 'TEST',
+      payForWifi: 'TEST',
+      teenagerFriendly: 'TEST',
+      artsAssociated: 'TEST',
+      userConsent: true,
+      // TODO: Add photo posting capabiity
+      photos: [],
+    };
+
+    db.addReview(reviewData, (err, result) => {
+      if (err) {
+        console.log('Error', err);
+      } else {
+        console.log('Review saved to database', result);
+        res.send(result);
+      };
+    });
+  });
 
 router.route('/:id/delete')
   .delete((req, res) => {});
