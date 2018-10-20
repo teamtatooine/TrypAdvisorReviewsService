@@ -82,3 +82,10 @@ let Attraction = mongoose.model('Attraction', attractionSchema);
 let Review = mongoose.model('Review', reviewSchema);
 let User = mongoose.model('User', userSchema);
 let Photo = mongoose.model('Photo', photoSchema);
+
+module.exports = {
+  Attraction: Attraction,
+  Review: Review,
+  User: User,
+  Photo: Photo
+};
