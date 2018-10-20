@@ -35,6 +35,29 @@ let attractionSchema = new Schema({
   ]
 });
 
+let reviewSchema = new Schema({
+  attraction: {type: Schema.Types.ObjectId, ref: 'Attraction'},
+  user: {type: Schema.Types.ObjectId, ref: 'User'},
+  userRating: Number,
+  reviewDate: Date,
+  title: String,
+  description: String,
+  upVote: Number,
+  typeOfVisit: String,
+  visitDate: Date,
+  recommendedLengthOfVisit: String,
+  skipLine: String,
+  headCover: String,
+  modestDress: String,
+  payForWifi: String,
+  teenagerFriendly: String,
+  artsAssociated: String,
+  photos: [
+    {type: Schema.Types.ObjectId, ref: 'Photo'}
+  ],
+  userConsent: Boolean,
+});
+
 let userSchema = new Schema({
   userName: String,
   profilePicture: String,
