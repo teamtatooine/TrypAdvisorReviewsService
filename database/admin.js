@@ -16,7 +16,16 @@ const logAllAndPopulate = () => {
   db.Photo.find().populate('review user').exec((err, data) => { console.log('PHOTOS', data) });
 };
 
+// Delete all collections
+const deleteAll = () => {
+  db.Attraction.collection.deleteMany({});
+  db.Review.collection.deleteMany({});
+  db.User.collection.deleteMany({});
+  db.Photo.collection.deleteMany({});
+};
+
 module.exports = {
   logAll: logAll,
   logAllAndPopulate: logAllAndPopulate,
+  deleteAll: deleteAll
 };
