@@ -4,6 +4,21 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const db = require('../../database/controllers.js');
 
+// Get request to retrieve attraction info
+router.route('/:id/attraction')
+  .get((req, res) => {
+    attractionId = mongoose.Types.ObjectId(req.params.id);
+
+    db.getAttraction(attractionId, (err, result) => {
+      if (err) {
+        console.log('Error', err);
+      } else {
+        console.log('Attraction returned', result);
+        res.send(result);
+      };
+    })
+  });
+
 // Post request to GET all or filtered Reviews
 router.route('/:id')
   .post((req, res) => {
@@ -12,14 +27,14 @@ router.route('/:id')
 
     // Check for Traveler Rating filters
     const ratings = [];
-    req.body.excellent === 'true' ? ratings.push(5) : null;
-    req.body.verygood === 'true' ? ratings.push(4) : null;
-    req.body.average === 'true' ? ratings.push(3) : null;
-    req.body.poor === 'true' ? ratings.push(2) : null;
-    req.body.terrible === 'true' ? ratings.push(1) : null;
-    if (ratings.length !== 0) {
-      filters.userRating = { $in: ratings };
-    };
+      req.body.excellent === 'true' ? ratings.push(5) : null;
+      req.body.verygood === 'true' ? ratings.push(4) : null;
+      req.body.average === 'true' ? ratings.push(3) : null;
+      req.body.poor === 'true' ? ratings.push(2) : null;
+      req.body.terrible === 'true' ? ratings.push(1) : null;
+      if (ratings.length !== 0) {
+        filters.userRating = { $in: ratings };
+    }
 
     // Check for Traveler Type filters
     const visitTypes = [];
@@ -59,25 +74,24 @@ router.route('/:id')
   });
 
 // Post request to add new Review
-router.route('/:id/add')
+router.route('/:id/add/:userid')
   .post((req, res) => {
     const reviewData = {
       attraction: mongoose.Types.ObjectId(req.params.id),
-      user: mongoose.Types.ObjectId('5bcaf388ae7cba700074f880'),
-      userRating: 5,
-      title: 'title TEST',
-      description: 'description TEST',
-      upVote: 100000,
-      typeOfVisit: 'friends',
-      visitDate: new Date(),
-      recommendedLengthOfVisit: '9 TEST',
-      skipLine: 'TEST',
-      headCover: 'TEST',
-      modestDress: 'TEST',
-      payForWifi: 'TEST',
-      teenagerFriendly: 'TEST',
-      artsAssociated: 'TEST',
-      userConsent: true,
+      user: mongoose.Types.ObjectId(req.params.userid),
+      userRating: req.body.rating,
+      title: req.body.title,
+      description: req.body.description,
+      upVote: 0,
+      visitType: req.body.visitType,
+      visitDate: req.body.visitDate,
+      recommendedLengthOfVisit: req.body.visitLength,
+      skipLine: req.body.skipLine,
+      headCover: req.body.headCover,
+      modestDress: req.body.modestDress,
+      payForWifi: req.body.payForWifi,
+      teenagerFriendly: req.body.teenagerFriendly,
+      artsAssociated: req.body.artsAssociated,
       // TODO: Add photo posting capabiity
       photos: [],
     };
@@ -95,7 +109,7 @@ router.route('/:id/add')
 // Delete request to delete Review
 router.route('/:id/delete')
   .delete((req, res) => {
-    const reviewId = mongoose.Types.ObjectId(req.params.id),
+    const reviewId = mongoose.Types.ObjectId(req.params.id);
     db.deleteReview(reviewId, (err, result) => {
       if (err) {
         console.log('Error', err);
@@ -103,7 +117,7 @@ router.route('/:id/delete')
         console.log('Review deleted database', result);
         res.send(result);
       };
-    })
+    });
   });
 
 module.exports = router;
