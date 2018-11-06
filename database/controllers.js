@@ -11,9 +11,21 @@ const db = require('./index.js');
     }, {
       $match: filters
     }, {
-      $sort : { reviewDate: -1 }
+      $lookup:
+       {
+         from: "users",
+         localField: "user",
+         foreignField: "_id",
+         as: "userData"
+       }
+    }, {
+      $sort: { reviewDate: -1 }
     }];
     db.Review.aggregate(parameters, callback);
+  };
+
+  const getPhoto = (photoId, callback) => {
+    db.Photo.findById(photoId, callback);
   };
 
 // Functions to add records
@@ -71,6 +83,7 @@ const db = require('./index.js');
 module.exports = {
   getAttraction: getAttraction,
   getReviews: getReviews,
+  getPhoto: getPhoto,
   addAttraction: addAttraction,
   addReview: addReview,
   addUser: addUser,
