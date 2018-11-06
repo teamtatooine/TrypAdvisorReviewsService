@@ -14,10 +14,11 @@ let Schema = mongoose.Schema;
 let attractionSchema = new Schema({
   name: String,
   description: String,
+  mainPhotoUrl: String,
   phone: String,
   email: String,
   website: String,
-  suggestedDuration: Number,
+  suggestedDuration: String,
   featuredIn: String,
   address1: String,
   address2: String,
@@ -55,13 +56,13 @@ let reviewSchema = new Schema({
   photos: [
     {type: Schema.Types.ObjectId, ref: 'Photo'}
   ],
-  userConsent: Boolean,
 });
 
 let userSchema = new Schema({
   userName: String,
   profilePicture: String,
   memberSince: Date,
+  location: String,
   reviews: [
     {type: Schema.Types.ObjectId, ref: 'Review'}
   ],
