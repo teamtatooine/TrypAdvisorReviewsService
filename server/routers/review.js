@@ -120,4 +120,35 @@ router.route('/:id/delete')
     });
   });
 
+// Post request to add new Attraction
+// router.route('/add')
+//   .post(function(req, res) {
+//     const attractionData = {
+//       name: 'Bertram Bogisich',
+//       description: 'Dolorum laboriosam dolorem dolorum placeat nobis.',
+//       phone: '(413) 689-9034 x4444',
+//       email: 'Sim_McCullough@yahoo.com',
+//       website: 'http://vito.info',
+//       suggestedDuration: 42317,g
+//       featuredIn: 'magni ratione quia',
+//       address1: '7766 Shanahan Lakes',
+//       address2: 'Suite 886',
+//       city: 'West Oran',
+//       state: 'Georgia',
+//       zip: '35871',
+//       lat: '-82.9094',
+//       lng: '-42.1299',
+//       category: 'Music'
+//     };
+
+//     db.addAttraction(attractionData, (err, result) => {
+//       if (err) {
+//         console.log('Error', err);
+//       } else {
+//         console.log('Attraction saved to database', result);
+//         res.send(result);
+//       };
+//     });
+//   });
+
 module.exports = router;
