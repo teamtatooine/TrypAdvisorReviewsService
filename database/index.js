@@ -1,5 +1,6 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/trypadvisorReviews');
+mongoose.connect(process.env.MONGODB_URI);
 
 // Check db connection
 const db = mongoose.connection;
@@ -44,7 +45,7 @@ let reviewSchema = new Schema({
   title: String,
   description: String,
   upVote: Number,
-  typeOfVisit: String,
+  visitType: String,
   visitDate: Date,
   recommendedLengthOfVisit: String,
   skipLine: String,

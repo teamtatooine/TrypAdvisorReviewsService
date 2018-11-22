@@ -67,7 +67,7 @@ for (var i = 0; i < 100; i++) {
       title: faker.company.bsAdjective() + ' ' + faker.company.bsNoun(),
       description: faker.company.catchPhrase() + '. ' + faker.company.catchPhrase() + '.' + faker.company.catchPhrase() + '.' + faker.company.catchPhrase() + '.' + faker.company.catchPhrase() + '.',
       upVote: Math.floor(Math.random() * 15),
-      typeOfVisit: typeOfVisitChoices[Math.floor(Math.random() * 5)],
+      visitType: typeOfVisitChoices[Math.floor(Math.random() * 5)],
       visitDate: faker.date.past(),
       recommendedLengthOfVisit: recommendedLengthOfVisitChoices[Math.floor(Math.random() * 4)],
       skipLine: choices[Math.floor(Math.random() * 3)],

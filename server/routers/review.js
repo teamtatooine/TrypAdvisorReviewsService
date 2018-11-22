@@ -44,7 +44,7 @@ router.route('/:id')
     req.body.business === 'true' ? visitTypes.push('business') : null;
     req.body.friends === 'true' ? visitTypes.push('friends') : null;
     if (visitTypes.length !== 0) {
-      filters.typeOfVisit = { $in: visitTypes };
+      filters.visitType = { $in: visitTypes };
     };
 
     // Check for Time of Year filters

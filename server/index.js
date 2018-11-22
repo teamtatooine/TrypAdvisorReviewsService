@@ -9,6 +9,8 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json());
 
+app.use(express.static(__dirname + '/../../../TrypAdvisorClient/dist'));
+
 app.use('/api/review', reviewRouter);
 
 const port = process.env.PORT || 3000
