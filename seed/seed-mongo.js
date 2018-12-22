@@ -117,8 +117,8 @@ async function seedDbAndLink() {
 };
 
 // EXECUTION FUNCTIONS
-seedDbAndLink();
-// dbAdmin.logAll();
+// seedDbAndLink();
+dbAdmin.logAll();
 // dbAdmin.logAllAndPopulate();
 // dbAdmin.deleteAllLinks();
 // dbAdmin.deleteAll();

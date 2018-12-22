@@ -1,6 +1,6 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect('mongodb://blastooo:grapes1@ds155313.mlab.com:55313/trypadvisor-reviews');
 
 // Check db connection
 const db = mongoose.connection;
