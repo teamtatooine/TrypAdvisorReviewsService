@@ -1,0 +1,32 @@
+Searching 5814 files for "event-stream"
+
+/Users/jmz/Developer/rpt08/27-TrypAdvisor/Services/TrypAdvisorReviewsService/node_modules/mongodb/package.json:
+   47      "coveralls": "^2.11.6",
+   48      "eslint": "^3.8.1",
+   49:     "event-stream": "^4.0.1",
+   50      "gleak": "0.5.0",
+   51      "integra": "0.1.8",
+
+/Users/jmz/Developer/rpt08/27-TrypAdvisor/Services/TrypAdvisorReviewsService/node_modules/mongodb/yarn.lock:
+  980      es5-ext "~0.10.14"
+  981
+  982: event-stream@^4.0.1, event-stream@^4.0.1:
+  983    version "3.3.4"
+  984:   resolved "https://registry.yarnpkg.com/event-stream/-/event-stream-4.0.1.tgz#4ab4c9a0f5a54db9338b4c34d86bfce8f4b35571"
+  985    dependencies:
+  986      duplexer "~0.1.1"
+  ...
+ 2126      async "^1.4.2"
+ 2127      bson "^0.5.2"
+ 2128:     event-stream "^4.0.1"
+ 2129      lodash.isfunction "^3.0.6"
+ 2130      lodash.transform "^3.0.4"
+
+/Users/jmz/Developer/rpt08/27-TrypAdvisor/Services/TrypAdvisorReviewsService/node_modules/readdirp/README.md:
+    8  var readdirp = require('readdirp')
+    9    , path = require('path')
+   10:   , es = require('event-stream');
+   11
+   12  // print out all JavaScript files along with their size
+
+7 matches across 3 files
