@@ -56,7 +56,7 @@ let reviewSchema = new Schema({
   artsAssociated: String,
   photos: [
     {type: Schema.Types.ObjectId, ref: 'Photo'}
-  ],
+  ]
 });
 
 let userSchema = new Schema({

@@ -1,8 +1,15 @@
 const faker = require('faker/locale/en_US');
 
-// Create 1 attraction
+// Options for mock data counts
+const attractionCount = 0;
+const reviewCount = 250;
+const userCount = 249;
+const photoCount = 500;
+
+// Create mock attractions data
 const attractions = [];
 
+// Create 1 unique attraction (for demo purposes)
 attractions.push(
   {
     name: 'Haleakala Crater',
@@ -26,49 +33,50 @@ attractions.push(
   }
 );
 
-// for (var i = 0; i < 1; i++) {
-//   attractions.push(
-//     {
-//       name: faker.name.findName(),
-//       description: faker.lorem.sentence(),
-//       mainPhotoUrl: "https://media-cdn.tripadvisor.com/media/photo-l/0f/35/cc/02/photo1jpg.jpg",
-//       phone: faker.phone.phoneNumber(),
-//       email: faker.internet.email(),
-//       website: faker.internet.url(),
-//       suggestedDuration: Math.floor(Math.random() * 10) + 1,
-//       featuredIn: faker.lorem.words(),
-//       address1: faker.address.streetAddress(),
-//       address2: faker.address.secondaryAddress(),
-//       city: faker.address.city(),
-//       state: faker.address.state(),
-//       zip: faker.address.zipCode(),
-//       lat: Number(faker.address.latitude()),
-//       lng: Number(faker.address.longitude()),
-//       category: faker.commerce.department(),
-//       reviews: [],
-//       photos: []
-//     }
-//   );
-// };
+for (var i = 0; i < attractionCount; i++) {
+  attractions.push(
+    {
+      name: faker.name.findName(),
+      description: faker.lorem.sentence(),
+      mainPhotoUrl: "https://media-cdn.tripadvisor.com/media/photo-l/0f/35/cc/02/photo1jpg.jpg",
+      phone: faker.phone.phoneNumber(),
+      email: faker.internet.email(),
+      website: faker.internet.url(),
+      suggestedDuration: Math.floor(Math.random() * 10) + 1,
+      featuredIn: faker.lorem.words(),
+      address1: faker.address.streetAddress(),
+      address2: faker.address.secondaryAddress(),
+      city: faker.address.city(),
+      state: faker.address.state(),
+      zip: faker.address.zipCode(),
+      lat: Number(faker.address.latitude()),
+      lng: Number(faker.address.longitude()),
+      category: faker.commerce.department(),
+      reviews: [],
+      photos: []
+    }
+  );
+};
 
-// Create 100 reviews
+// Create mock reviews data
 const reviews = [];
-const typeOfVisitChoices = ['couples', 'family', 'friends', 'business', 'solo'];
+
+const typeOfVisitChoices = ['couples', 'families', 'friends', 'business', 'solo'];
 const recommendedLengthOfVisitChoices = ['<1 hour', '1-2 hours', '2-3 hours', 'more than 3 hours']
 const choices = ['yes', 'no', 'not sure'];
 
-for (var i = 0; i < 100; i++) {
+for (var i = 0; i < reviewCount; i++) {
   reviews.push(
     {
       attraction: null,
       user: null,
-      userRating: Math.floor(Math.random() * 5) + 1,
+      rating: Math.floor(Math.random() * 5) + 1,
       reviewDate: null,
       title: faker.company.bsAdjective() + ' ' + faker.company.bsNoun(),
       description: faker.company.catchPhrase() + '. ' + faker.company.catchPhrase() + '.' + faker.company.catchPhrase() + '.' + faker.company.catchPhrase() + '.' + faker.company.catchPhrase() + '.',
       upVote: Math.floor(Math.random() * 15),
       visitType: typeOfVisitChoices[Math.floor(Math.random() * 5)],
-      visitDate: faker.date.past(),
+      visitDate: (2018 - Math.floor(Math.random() * 10)) + '-' + (Math.floor(Math.random() * 12) + 1),
       recommendedLengthOfVisit: recommendedLengthOfVisitChoices[Math.floor(Math.random() * 4)],
       skipLine: choices[Math.floor(Math.random() * 3)],
       headCover: choices[Math.floor(Math.random() * 3)],
@@ -82,21 +90,8 @@ for (var i = 0; i < 100; i++) {
   );
 };
 
-// Create 99 users
+// Create mock users data
 const users = [];
-
-for (var i = 0; i < 20; i++) {
-  users.push(
-    {
-      userName: faker.name.findName(),
-      profilePicture: faker.image.avatar(),
-      memberSince: faker.date.past(),
-      location: faker.address.city() + ', ' + faker.address.state(),
-      reviews: [],
-      photos: []
-    }
-  );
-};
 
 // Create 1 unique user (ME)
 users.push(
@@ -110,14 +105,27 @@ users.push(
   }
 );
 
-// Create 200 photos
+for (var i = 0; i < userCount; i++) {
+  users.push(
+    {
+      userName: faker.name.findName(),
+      profilePicture: faker.image.avatar(),
+      memberSince: faker.date.past(),
+      location: faker.address.city() + ', ' + faker.address.state(),
+      reviews: [],
+      photos: []
+    }
+  );
+};
+
+// Create mock photos data
 const photos = [];
 
-for (var i = 0; i < 200; i++) {
+for (var i = 0; i < photoCount; i++) {
   photos.push(
     {
-      review: null,
-      user: null,
+      // review: null,
+      // user: null,
       caption: faker.lorem.sentence(),
       imageUrl: "https://picsum.photos/200/300?image=" + Math.floor(Math.random() * 1000)
     }
